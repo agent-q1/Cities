@@ -45,7 +45,14 @@ import java.util.Set;
  */
 public class RectHouseGenerator implements BuildingGenerator {
 
+
     public Building generate(Parcel parcel, HeightMap hm) {
+
+        return generate(parcel, hm, 3);
+
+    }
+
+    public Building generate(Parcel parcel, HeightMap hm, int height) {
 
         // use the rectangle, not the lot itself, because its hashcode is the identity hashcode
         Random rng = new MersenneRandom(parcel.getShape().hashCode());
@@ -63,7 +70,7 @@ public class RectHouseGenerator implements BuildingGenerator {
 
         // we add +1, because the building starts at 1 block above the terrain
         int floorHeight = TeraMath.floorToInt(hm.apply(probePos)) + 1;
-        int wallHeight = 3;
+        int wallHeight = height;
 
         int roofBaseHeight = floorHeight + wallHeight;
 
